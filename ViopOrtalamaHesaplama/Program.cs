@@ -1,7 +1,16 @@
+using Microsoft.Extensions.DependencyInjection;
+using ViopOrtalama.Business.Abstract;
+using ViopOrtalama.Business.Concrate;
+using ViopOrtalama.Repositories.Abstract;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient(typeof(IGenericService<>), typeof(GenericManager<>));
+builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+
 
 var app = builder.Build();
 
@@ -12,6 +21,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
