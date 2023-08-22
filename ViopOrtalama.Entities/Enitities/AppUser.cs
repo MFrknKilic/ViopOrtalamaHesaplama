@@ -42,6 +42,6 @@ namespace ViopOrtalama.Entities.Enitities
         [Display(Name = "Meslek")]
         public string Job { get; set; }
         public List<Contract>? Contracts { get; set; }
-        public Favorite? Favorite { get; set; }
+        public List<Favorite>? Favorites { get; set; }
     }
 }

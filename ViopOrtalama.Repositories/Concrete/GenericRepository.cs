@@ -13,7 +13,7 @@ using ViopOrtalama.Repositories.Context;
 
 namespace ViopOrtalama.Repositories.Concrete
 {
-    internal class GenericRepository<T> : IGenericRepository<T> where T : class, IBaseEntity
+    public class GenericRepository<T> : IGenericRepository<T> where T : class, IBaseEntity
     {
         private readonly ViopDbContext _db;
 

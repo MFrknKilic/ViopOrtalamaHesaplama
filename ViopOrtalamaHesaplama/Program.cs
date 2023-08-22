@@ -1,33 +1,56 @@
+using FormHelper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authentication;
 using ViopOrtalama.Business.Abstract;
 using ViopOrtalama.Business.Concrate;
+using ViopOrtalama.Entities.Enitities;
+using ViopOrtalama.Repositories;
 using ViopOrtalama.Repositories.Abstract;
+using ViopOrtalama.Repositories.Concrete;
+using ViopOrtalama.Repositories.Context;
+using System.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+// Hizmetlerin eklenmesi ve yapýlandýrýlmasý
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation().AddFormHelper();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddDbContext<ViopDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Viop"));
+});
+builder.Services.AddIdentity<AppUser, IdentityRole<int>>()
+              .AddEntityFrameworkStores<ViopDbContext>()
+              .AddDefaultTokenProviders();
+
+
 builder.Services.AddTransient(typeof(IGenericService<>), typeof(GenericManager<>));
 builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
-
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+var env = app.Environment; // IWebHostEnvironment
+
+if (env.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+    //app.UseMigrationsEndPoint();
+}
+else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

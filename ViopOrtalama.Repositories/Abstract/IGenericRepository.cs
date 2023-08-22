@@ -8,8 +8,7 @@ using ViopOrtalama.Entities.Enitities;
 
 namespace ViopOrtalama.Repositories.Abstract
 {
-   public interface IGenericRepository<T>
-   where T : class, IBaseEntity
+   public interface IGenericRepository<T>  where T : class, IBaseEntity
     {
         T GetById(int id);
         T GetByDefault(Expression<Func<T, bool>> exp);

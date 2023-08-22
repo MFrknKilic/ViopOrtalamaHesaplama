@@ -1,22 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using ViopOrtalama.Entities.Enitities;
 using ViopOrtalama.Entities.Enums;
 
-namespace ViopOrtalama.Entities.Enitities
+namespace ViopOrtalamaHesaplama.UI.Models
 {
-    public class Contract : IBaseEntity
+    public class ContractCompanyVM
     {
-        public int Id { get; set; }
-        public DateTime CreateDate { get; set; } = DateTime.Now;
-        public DateTime? UpdateDate { get; set; }
-        public DateTime? DeleteDate { get; set; }
-
-        [Display(Name = "Durum")]
-        public Status Status { get; set; } = Status.Active;
         [Display(Name = "Adet")]
         public int Quantity { get; set; }
         [Display(Name = "Vade")]
@@ -29,13 +18,12 @@ namespace ViopOrtalama.Entities.Enitities
         public Commodity? Commodity { get; set; }
         [Display(Name = "Endeks")]
         public Average? Averages { get; set; }
-        public Position Position { get; set; }
-
+        public Position? Position { get; set; }
+        public Position SelectedPosition { get; set; }
+        [Display(Name = "Fiyat")]
         public decimal Price { get; set; }
 
         public AppUser AppUser { get; set; }
 
-
-       
     }
 }

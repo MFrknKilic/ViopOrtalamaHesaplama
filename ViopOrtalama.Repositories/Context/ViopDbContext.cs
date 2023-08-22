@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,9 @@ using ViopOrtalama.Entities.Enitities;
 
 namespace ViopOrtalama.Repositories.Context
 {
-    public class ViopDbContext : IdentityDbContext<AppUser,AppRole,int>
+    public class ViopDbContext : DbContext
     {
+       
         public ViopDbContext(DbContextOptions<ViopDbContext> options) : base(options)
         {
 
@@ -19,5 +21,6 @@ namespace ViopOrtalama.Repositories.Context
         public DbSet<Favorite> Favorites { get; set; }
 
     }
+
 }
 

@@ -1,0 +1,129 @@
+﻿@using ViopOrtalama.Entities.Enums;
+@model ViopOrtalamaHesaplama.UI.Models.ContractCompanyVM
+@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Example</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Form Example</h2>
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Quantity"></label>
+                <input asp-for="Quantity" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Expiry"></label>
+                <select asp-for="Expiry" class="form-control">
+                   
+                    @for (int i = 0; i < 3; i++) // Mevcut ay ve sonrasındaki 2 ay
+                    {
+                        var nextMonth = DateTime.Now.AddMonths(i).Month;
+                        var nextMonthEnumValue = (Expiry)nextMonth;
+
+                        <option value="@nextMonth">@nextMonthEnumValue.GetDisplayName() - @nextMonth</option>
+                    }
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Company"></label>
+                <select asp-for="Company" class="form-control">
+                    <option value="Company">Seçiniz</option>
+                    @foreach (var companyValue in Enum.GetValues(typeof(Company)))
+                    {
+                        <option value="@companyValue">@companyValue</option>
+                    }
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Currency"></label>
+                <select asp-for="Currency" class="form-control">
+                    <option value="Currency">Seçiniz</option>
+                    @foreach (var currencyValue in Enum.GetValues(typeof(Currency)))
+                    {
+                        <option value="@currencyValue">@currencyValue</option>
+                    }
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Commodity"></label>
+                <select asp-for="Commodity" class="form-control">
+                    <option value="Commodity">Seçiniz</option>
+                    @foreach (var commodityValue in Enum.GetValues(typeof(Commodity)))
+                    {
+                        <option value="@commodityValue">@commodityValue</option>
+                    }
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Averages"></label>
+                <select asp-for="Averages" class="form-control">
+                    <option value="Averages">Seçiniz</option>
+                    @foreach (var averageValue in Enum.GetValues(typeof(Average)))
+                    {
+                        <option value="@averageValue">@averageValue</option>
+                    }
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Position"></label>
+                <div class="btn-group">
+                    @foreach (var positionValue in Enum.GetValues(typeof(Position)).Cast<Position>())
+                    {
+                        <button type="button" class="btn position-button @(Model?.Position == positionValue ? "active" : "")" data-value="@positionValue">@positionValue.ToString()</button>
+                    }
+                </div>
+                <input type="hidden" asp-for="SelectedPosition" />
+            </div>
+
+
+
+            <!-- Diğer form alanları için benzer şekilde devam edebilirsiniz -->
+
+            <div class="form-group">
+                <label asp-for="Price"></label>
+                <input asp-for="Price" class="form-control" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const positionButtons = document.querySelectorAll('.position-button');
+        const selectedPositionInput = document.getElementById('SelectedPosition');
+
+        positionButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                positionButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                const positionValue = this.getAttribute('data-value');
+                selectedPositionInput.value = positionValue;
+            });
+        });
+
+    </script>
+</body>
+</html>
+

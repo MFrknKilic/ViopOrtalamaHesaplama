@@ -3,16 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViopOrtalamaHesaplama.UI", "ViopOrtalamaHesaplama\ViopOrtalamaHesaplama.UI.csproj", "{57F30651-E082-4B1A-B0EB-C5C186834FEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViopOrtalamaHesaplama.UI", "ViopOrtalamaHesaplama\ViopOrtalamaHesaplama.UI.csproj", "{57F30651-E082-4B1A-B0EB-C5C186834FEB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{85A1976D-921C-4921-8D22-78145632A728} = {85A1976D-921C-4921-8D22-78145632A728}
+		{92037E50-2E90-4D20-998D-6B1DEB3EC73B} = {92037E50-2E90-4D20-998D-6B1DEB3EC73B}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViopOrtalama.Business", "ViopOrtalama.Business\ViopOrtalama.Business.csproj", "{F491241A-73D0-4C17-8916-433C173066F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViopOrtalama.Business", "ViopOrtalama.Business\ViopOrtalama.Business.csproj", "{F491241A-73D0-4C17-8916-433C173066F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViopOrtalama.Entities", "ViopOrtalama.Entities\ViopOrtalama.Entities.csproj", "{85A1976D-921C-4921-8D22-78145632A728}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViopOrtalama.Entities", "ViopOrtalama.Entities\ViopOrtalama.Entities.csproj", "{85A1976D-921C-4921-8D22-78145632A728}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViopOrtalama.Repositories", "ViopOrtalama.Repositories\ViopOrtalama.Repositories.csproj", "{92037E50-2E90-4D20-998D-6B1DEB3EC73B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViopOrtalama.Repositories", "ViopOrtalama.Repositories\ViopOrtalama.Repositories.csproj", "{92037E50-2E90-4D20-998D-6B1DEB3EC73B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{85A1976D-921C-4921-8D22-78145632A728} = {85A1976D-921C-4921-8D22-78145632A728}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViopOrtalama.Dtos", "ViopOrtalama.Dtos\ViopOrtalama.Dtos.csproj", "{70BB9CD3-F8B0-4521-822D-75C4E27FE154}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +42,10 @@ Global
 		{92037E50-2E90-4D20-998D-6B1DEB3EC73B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92037E50-2E90-4D20-998D-6B1DEB3EC73B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92037E50-2E90-4D20-998D-6B1DEB3EC73B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70BB9CD3-F8B0-4521-822D-75C4E27FE154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70BB9CD3-F8B0-4521-822D-75C4E27FE154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70BB9CD3-F8B0-4521-822D-75C4E27FE154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70BB9CD3-F8B0-4521-822D-75C4E27FE154}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
