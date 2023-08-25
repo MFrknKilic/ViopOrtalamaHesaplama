@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ViopOrtalama.Repositories.Context;
 
@@ -11,9 +12,11 @@ using ViopOrtalama.Repositories.Context;
 namespace ViopOrtalama.Repositories.Migrations
 {
     [DbContext(typeof(ViopDbContext))]
-    partial class ViopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230823174919_pass")]
+    partial class pass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

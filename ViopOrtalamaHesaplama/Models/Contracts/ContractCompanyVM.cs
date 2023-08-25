@@ -2,22 +2,23 @@
 using ViopOrtalama.Entities.Enitities;
 using ViopOrtalama.Entities.Enums;
 
-namespace ViopOrtalamaHesaplama.UI.Models
+namespace ViopOrtalamaHesaplama.UI.Models.Contracts
 {
-    public class CreateContractCommodityVM
+    public class ContractCompanyVM
     {
         [Display(Name = "Adet")]
         public int Quantity { get; set; }
         [Display(Name = "Vade")]
         public Expiry? Expiry { get; set; }
+        [Display(Name = "Şirket")]
+        public Company? Company { get; set; }
 
-        [Display(Name = "Emtia")]
-        public Commodity? Commodity { get; set; }
         public Position? Position { get; set; }
         public Position SelectedPosition { get; set; }
         [Display(Name = "Fiyat")]
         public decimal Price { get; set; }
 
         public AppUser AppUser { get; set; }
+
     }
 }

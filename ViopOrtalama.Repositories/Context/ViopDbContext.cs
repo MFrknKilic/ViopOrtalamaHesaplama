@@ -10,7 +10,7 @@ using ViopOrtalama.Entities.Enitities;
 
 namespace ViopOrtalama.Repositories.Context
 {
-    public class ViopDbContext : DbContext
+    public class ViopDbContext : IdentityDbContext<AppUser,AppRole,int>
     {
        
         public ViopDbContext(DbContextOptions<ViopDbContext> options) : base(options)

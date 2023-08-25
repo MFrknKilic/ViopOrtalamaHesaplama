@@ -30,6 +30,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole<int>>()
 builder.Services.AddTransient(typeof(IGenericService<>), typeof(GenericManager<>));
 builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+
 var app = builder.Build();
 
 var env = app.Environment; // IWebHostEnvironment
@@ -44,7 +45,6 @@ else
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

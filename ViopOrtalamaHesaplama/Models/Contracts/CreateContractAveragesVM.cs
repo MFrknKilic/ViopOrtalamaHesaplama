@@ -2,7 +2,7 @@
 using ViopOrtalama.Entities.Enitities;
 using ViopOrtalama.Entities.Enums;
 
-namespace ViopOrtalamaHesaplama.UI.Models
+namespace ViopOrtalamaHesaplama.UI.Models.Contracts
 {
     public class CreateContractAveragesVM
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,14 +32,10 @@ namespace ViopOrtalama.Entities.Enitities
         [Display(Name = "Doğum Tarihi")]
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
+        public string Password { get; set; }
         [Display(Name = "Telefon Numarası")]
         public override string PhoneNumber { get; set; }
-        [Display(Name = "Takipçi Sayısı")]
-        public int? Followers { get; set; }
-        [Display(Name = "T.C. Kimlik Numarası")]
-        public string CitizenId { get; set; }
-        [Display(Name = "Uyruk")]
-        public string Country { get; set; }
+     
         [Display(Name = "Meslek")]
         public string Job { get; set; }
         public List<Contract>? Contracts { get; set; }

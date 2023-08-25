@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ViopOrtalamaHesaplama.UI.Models
+namespace ViopOrtalamaHesaplama.UI.Models.Users
 {
     public class LoginVM
     {

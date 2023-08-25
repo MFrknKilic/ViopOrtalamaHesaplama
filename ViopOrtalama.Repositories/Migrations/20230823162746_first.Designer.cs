@@ -12,8 +12,8 @@ using ViopOrtalama.Repositories.Context;
 namespace ViopOrtalama.Repositories.Migrations
 {
     [DbContext(typeof(ViopDbContext))]
-    [Migration("20230817010856_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230823162746_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -140,12 +140,6 @@ namespace ViopOrtalama.Repositories.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Name")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -153,12 +147,6 @@ namespace ViopOrtalama.Repositories.Migrations
                     b.Property<string>("NormalizedName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -184,16 +172,8 @@ namespace ViopOrtalama.Repositories.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CitizenId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreateDate")
@@ -212,9 +192,6 @@ namespace ViopOrtalama.Repositories.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Followers")
-                        .HasColumnType("int");
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
@@ -318,9 +295,6 @@ namespace ViopOrtalama.Repositories.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("Expiry")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MyProperty")
                         .HasColumnType("int");
 
                     b.Property<int>("Position")

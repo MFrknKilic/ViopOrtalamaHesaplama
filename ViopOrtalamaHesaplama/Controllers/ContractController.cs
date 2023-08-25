@@ -3,89 +3,102 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ViopOrtalama.Business.Abstract;
 using ViopOrtalama.Entities.Enitities;
-using ViopOrtalamaHesaplama.UI.Models;
+using ViopOrtalamaHesaplama.UI.Models.Contracts;
 
 namespace ViopOrtalamaHesaplama.UI.Controllers
 {
-    public class ContractController : BaseController
+    public class ContractController : Controller
     {
 
         private readonly IGenericService<Contract> _contractService;
+        private readonly UserManager<AppUser> _userManager;
 
-
-        public ContractController(UserManager<AppUser> userManager, IGenericService<Contract> contractService):base(userManager)
+        public ContractController(UserManager<AppUser> userManager, IGenericService<Contract> contractService)
         {
             _contractService = contractService;
-
+            _userManager = userManager;
         }
 
         [HttpGet]
         public async Task<IActionResult> CreateContractCompany()
         {
-            var currentUser = await GetCurrentUserAsync();
-
+            AppUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
 
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateContractCompany(ContractVM vm)
+        public async Task<IActionResult> CreateContractCompany(ContractCompanyVM ccvm)
         {
-            var vam = vm;
-            var currentUser = await GetCurrentUserAsync();
+            AppUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
 
+            Contract contract = new Contract();
+
+            contract.AppUser = currentUser;
+            contract.Quantity = ccvm.Quantity;
+            contract.Price = ccvm.Price;
+            contract.Company = ccvm.Company;
+            contract.Expiry = ccvm.Expiry;
+            contract.Position = ccvm.SelectedPosition;
+
+            _contractService.Add(contract);
 
             return View();
 
         }
+
+        /**/
         [HttpGet]
         public async Task<IActionResult> CreateContractCommodity()
         {
-            var currentUser = await GetCurrentUserAsync();
+           
 
 
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateContractCommodity(ContractVM vm)
+        public async Task<IActionResult> CreateContractCommodity(CreateContractCommodityVM cccvm)
         {
-            var vam = vm;
-            var currentUser = await GetCurrentUserAsync();
+            var vam = cccvm;
+           
 
 
             return View();
 
         }
+        /**/
         [HttpGet]
         public async Task<IActionResult> CreateContractCurrency()
         {
-            var currentUser = await GetCurrentUserAsync();
+           
 
 
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateContractCurrency(ContractVM vm)
+        public async Task<IActionResult> CreateContractCurrency(CreateContractCurrencyVM cccurencyvm)
         {
-            var vam = vm;
-            var currentUser = await GetCurrentUserAsync();
+            var vam = cccurencyvm;
+            
 
 
             return View();
 
         }
+
         [HttpGet]
         public async Task<IActionResult> CreateContractAvarage()
         {
-            var currentUser = await GetCurrentUserAsync();
+            
 
 
             return View();
         }
+
         [HttpPost]
-        public async Task<IActionResult> CreateContractAvarage(ContractVM vm)
+        public async Task<IActionResult> CreateContractAvarage(CreateContractAveragesVM vm)
         {
             var vam = vm;
-            var currentUser = await GetCurrentUserAsync();
+            
 
 
             return View();

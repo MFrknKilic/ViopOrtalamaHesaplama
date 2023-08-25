@@ -1,12 +1,10 @@
 ﻿@using ViopOrtalama.Entities.Enums;
-@using ViopOrtalamaHesaplama.UI.Models.Contracts;
-@model ContractCompanyVM
+   @using ViopOrtalamaHesaplama.UI.Models.Contracts;
+@model CreateContractCommodityVM
 @{
     Layout = null;
     ViewData["Title"] = "Login";
 }
-
-
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +14,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>Form Example</h2>
+        <h1>Emtia</h1>
         <form method="post">
             <div class="form-group">
                 <label asp-for="Quantity"></label>
@@ -27,7 +25,7 @@
                 <label asp-for="Expiry"></label>
                 <select asp-for="Expiry" class="form-control">
                    
-                    @for (int i = 0; i < 3; i++) // Mevcut ay ve sonrasındaki 2 ay
+                    @for (int i = 0; i < 5; i++) // Mevcut ay ve sonrasındaki 4 ay
                     {
                         var nextMonth = DateTime.Now.AddMonths(i).Month;
                         var nextMonthEnumValue = (Expiry)nextMonth;
@@ -37,20 +35,18 @@
                 </select>
             </div>
 
-
             <div class="form-group">
-                <label asp-for="Company"></label>
-                <select asp-for="Company" class="form-control">
-                    <option value="Company">Seçiniz</option>
-                    @foreach (var companyValue in Enum.GetValues(typeof(Company)))
+                <label asp-for="Commodity"></label>
+                <select asp-for="Commodity" class="form-control">
+                    <option value="Commodity">Seçiniz</option>
+                    @foreach (var commodityValue in Enum.GetValues(typeof(Commodity)))
                     {
-                        <option value="@companyValue">@companyValue</option>
+                        <option value="@commodityValue">@commodityValue</option>
                     }
 
                 </select>
             </div>
 
-           
             <div class="form-group">
                 <label asp-for="Position"></label>
                 <div class="btn-group">
