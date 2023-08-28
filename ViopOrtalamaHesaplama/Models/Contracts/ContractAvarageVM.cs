@@ -6,6 +6,7 @@ namespace ViopOrtalamaHesaplama.UI.Models.Contracts
 {
     public class ContractAvarageVM
     {
+        public int ContractID { get; set; }
         [Display(Name = "Şirket")]
         public Company? Company { get; set; }
         [Display(Name = "Vade")]

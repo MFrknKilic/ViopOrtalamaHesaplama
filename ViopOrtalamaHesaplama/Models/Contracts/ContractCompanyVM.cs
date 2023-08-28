@@ -16,7 +16,7 @@ namespace ViopOrtalamaHesaplama.UI.Models.Contracts
         public Position? Position { get; set; }
         public Position SelectedPosition { get; set; }
         [Display(Name = "Fiyat")]
-        public decimal Price { get; set; }
+        public string Price { get; set; }
 
         public AppUser AppUser { get; set; }
 

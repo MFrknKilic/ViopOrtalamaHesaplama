@@ -1,7 +1,7 @@
 ﻿@using ViopOrtalamaHesaplama.UI.Models.Contracts
 @model List<CompanyAvarages>
 @{
-    Layout = "~/Views/Shared/YourLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Company Averages";
 }
 
@@ -39,8 +39,7 @@
                 <th>Vade</th>
                 <th>Pozisyon</th>
                 <th>Adet</th>
-                <th>Fiyat</th>
-                <th>Ortalama</th>
+                               <th>Ortalama</th>
             </tr>
         </thead>
         <tbody>
@@ -48,29 +47,14 @@
             {
                 <tr>
                     <td>@contractAverage.Company</td>
-                    <td>@contractAverage.Expiry</td>
+                    <td>@contractAverage.Expiry.GetDisplayName()-@contractAverage.Expiry.GetValue()</td>
                     <td>@contractAverage.Position</td>
                     <td>@contractAverage.Quantity</td>
-                    <td>@contractAverage.Price.ToString("N2")</td>
                     <td class="average-cell">@contractAverage.ContactAverage.ToString("N2")</td>
                 </tr>
             }
         </tbody>
     </table>
-    <h2>Open Positions</h2>
-    <table id="open-table">
-        <thead>
-            <tr>
-                <th>Şirket</th>
-                <th>Vade</th>
-                <th>Pozisyon</th>
-                <th>Adet</th>
-                <th>Fiyat</th>
-            </tr>
-        </thead>
-        <tbody id="open-table-body">
-           
-        </tbody>
-    </table>
+    
 </body>
 </html>

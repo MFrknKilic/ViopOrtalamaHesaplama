@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 using ViopOrtalama.Business.Abstract;
 using ViopOrtalama.Entities.Enitities;
 using ViopOrtalamaHesaplama.UI.Models.Contracts;
@@ -38,14 +39,25 @@ namespace ViopOrtalamaHesaplama.UI.Controllers
 
             contract.AppUser = currentUser;
             contract.Quantity = ccvm.Quantity;
-            contract.Price = ccvm.Price;
+
+            string priceString = ccvm.Price.Replace(',', '.'); // Virgül yerine nokta kullanımını desteklemek için
+            contract.Price = decimal.Parse(priceString, CultureInfo.InvariantCulture);
             contract.Company = ccvm.Company;
             contract.Expiry = ccvm.Expiry;
             contract.Position = ccvm.SelectedPosition;
             contract.AppUser.Id = currentUser.Id;
             _contractService.Add(contract);
 
-            return View();
+            return RedirectToAction("ContractAverageOpenOnes", "ContractAverages");
+
+        }
+       
+        [HttpPost]
+        public async Task<IActionResult> DeleteContract(int contractID)
+        {
+            Contract contract=_contractService.GetById(contractID);
+            _contractService.Remove(contract);
+            return RedirectToAction("ContractAverageOpenOnes", "ContractAverages");
 
         }
 

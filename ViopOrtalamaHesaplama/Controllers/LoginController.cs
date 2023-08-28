@@ -48,7 +48,21 @@ namespace ViopOrtalamaHesaplama.UI.Controllers
             //kullanıcı adı veya şifre hatalı
             return View();
         }
-      }
+        [HttpGet]
+        public async Task<IActionResult> LoginOut()
+        {
+            AppUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            if (currentUser != null)
+            {
+                await _signInManager.SignOutAsync();
+                return RedirectToAction("index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("index", "Home");
+            }
+        }
+    }
 }
 
 

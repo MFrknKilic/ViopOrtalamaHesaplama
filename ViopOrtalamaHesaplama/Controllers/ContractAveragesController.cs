@@ -9,13 +9,13 @@ namespace ViopOrtalamaHesaplama.UI.Controllers
 {
     [Authorize]
 
-    public class ContractAverages : Controller
+    public class ContractAveragesController : Controller
     {
 
         private readonly IGenericService<Contract> _contractService;
         private readonly UserManager<AppUser> _userManager;
 
-        public ContractAverages(UserManager<AppUser> userManager, IGenericService<Contract> contractService)
+        public ContractAveragesController(UserManager<AppUser> userManager, IGenericService<Contract> contractService)
         {
             _contractService = contractService;
             _userManager = userManager;
@@ -27,21 +27,22 @@ namespace ViopOrtalamaHesaplama.UI.Controllers
             AppUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
             List<Contract> contracts = _contractService.GetDefault(x => x.AppUser.Id == currentUser.Id)
               .GroupBy(x => new { x.Company, x.Expiry, x.Position })
-              .Where(g => g.Count() > 1)
+              .Where(g => g.Count() > 0)
               .SelectMany(g => g)
+               .OrderByDescending(c => c.CreateDate)
               .ToList();
             static ContractAvarageVM MapToAvarageVM(Contract contract)
             {
                 return new ContractAvarageVM
                 {
+                    ContractID = contract.Id,
                     Company = contract.Company,
                     Expiry = contract.Expiry,
                     Position = contract.Position,
                     SelectedPosition = contract.Position,
                     Quantity = contract.Quantity,
                     Price = contract.Price,
-                    // Ortalama değeri için hesaplama yapmanız gerekebilir.
-                    // ContactAverage = ...
+                    
                 };
             }
 
@@ -65,7 +66,7 @@ namespace ViopOrtalamaHesaplama.UI.Controllers
             AppUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
             List<Contract> contracts = _contractService.GetDefault(x => x.AppUser.Id == currentUser.Id)
                 .GroupBy(x => new { x.Company, x.Expiry, x.Position })
-                .Where(g => g.Count() > 1)
+                .Where(g => g.Count() > 0)
                 .SelectMany(g => g)
                 .ToList();
 

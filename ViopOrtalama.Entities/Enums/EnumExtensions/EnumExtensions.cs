@@ -30,6 +30,10 @@ namespace ViopOrtalama.Entities.Enums.EnumExtensions
 
                 return enumValue.ToString();
             }
+        public static int GetValue(this Enum value)
+        {
+            return Convert.ToInt32(value);
         }
+    }
     
 }

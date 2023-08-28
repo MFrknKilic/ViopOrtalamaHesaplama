@@ -2,7 +2,7 @@
 @using ViopOrtalamaHesaplama.UI.Models.Contracts;
 @model ContractCompanyVM
 @{
-    Layout = "~/Views/Shared/YourLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Login";
 }
 
@@ -11,12 +11,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Form Example</title>
+    <style>
+        /* CSS kodunu burada tanımlayın */
+        .position-button:hover,
+        .position-button.active {
+            background-color: cornflowerblue;
+            /* Diğer hover stil tanımlamalarını buraya ekleyin */
+        }
+    </style>
+    <title>Kontrat Aç</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
-        <h2>Form Example</h2>
+        <h2>Kontrat Aç</h2>
         <form method="post">
             <div class="form-group">
                 <label asp-for="Quantity"></label>
@@ -52,7 +60,7 @@
 
            
             <div class="form-group">
-                <label asp-for="Position"></label>
+                <label asp-for="Position">Position:    </label>
                 <div class="btn-group">
                     @foreach (var positionValue in Enum.GetValues(typeof(Position)).Cast<Position>())
                     {
@@ -68,7 +76,7 @@
 
             <div class="form-group">
                 <label asp-for="Price"></label>
-                <input asp-for="Price" class="form-control" />
+                <input asp-for="Price" class="form-control" placeholder="Lütfen fiyatı giriniz..." />
             </div>
 
             <button type="submit" class="btn btn-primary">Kaydet</button>
@@ -88,6 +96,9 @@
                 selectedPositionInput.value = positionValue;
             });
         });
+           function toggleActive(button) {
+            button.classList.toggle("active");
+        }
 
     </script>
 </body>

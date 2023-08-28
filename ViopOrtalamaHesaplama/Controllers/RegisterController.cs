@@ -74,6 +74,7 @@ namespace ViopOrtalamaHesaplama.UI.Controllers
                     //TempData["Mail"] = appUserRegisterDto.Email;
 
                     //return RedirectToAction("Index", "ConfirmMail");
+                    return RedirectToAction("index", "Home");
                 }
                 else
                 {
@@ -93,7 +94,7 @@ namespace ViopOrtalamaHesaplama.UI.Controllers
 
         
 
-            return View();
+            return RedirectToAction("index","Home");
         }
     }
        
