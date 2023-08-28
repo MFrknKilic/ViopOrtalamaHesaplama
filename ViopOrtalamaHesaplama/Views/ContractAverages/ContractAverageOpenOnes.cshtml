@@ -1,4 +1,10 @@
-﻿@model List<ContractAvarageVM>
+﻿@using ViopOrtalamaHesaplama.UI.Models.Contracts
+@model List<ContractAvarageVM>
+@{
+    Layout = "~/Views/Shared/YourLayout.cshtml";
+    ViewData["Title"] = "";
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +19,7 @@
                 <th>Pozisyon</th>
                 <th>Adet</th>
                 <th>Fiyat</th>
-                <th>Ortalama</th>
+              
             </tr>
         </thead>
         <tbody>
@@ -25,10 +31,13 @@
                     <td>@contract.SelectedPosition</td>
                     <td>@contract.Quantity</td>
                     <td>@contract.Price</td>
-                    <td>@contract.ContactAverage</td>
+                   
                 </tr>
             }
         </tbody>
-    </table>
+      
+
 </body>
 </html>
+
+

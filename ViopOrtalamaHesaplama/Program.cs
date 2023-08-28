@@ -12,19 +12,24 @@ using ViopOrtalama.Repositories.Concrete;
 using ViopOrtalama.Repositories.Context;
 using System.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Hizmetlerin eklenmesi ve yapýlandýrýlmasý
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation().AddFormHelper();
 builder.Services.AddDistributedMemoryCache();
+
 builder.Services.AddDbContext<ViopDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Viop"));
 });
-builder.Services.AddIdentity<AppUser, IdentityRole<int>>()
-              .AddEntityFrameworkStores<ViopDbContext>()
-              .AddDefaultTokenProviders();
+builder.Services.AddIdentity<AppUser, AppRole>(options =>
+{
+    
+    
+  
+}).AddEntityFrameworkStores<ViopDbContext>().AddTokenProvider<DataProtectorTokenProvider<AppUser>>(TokenOptions.DefaultProvider);
 
 
 builder.Services.AddTransient(typeof(IGenericService<>), typeof(GenericManager<>));

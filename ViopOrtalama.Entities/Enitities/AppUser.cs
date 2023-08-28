@@ -19,6 +19,14 @@ namespace ViopOrtalama.Entities.Enitities
         public DateTime? DeleteDate { get; set; }
         [Display(Name = "Durum")]
         public Status Status { get; set; } = Status.Active;
+        private string _email;
+      
+        public override string Email
+        {
+            get { return _email; }
+            set { _email = value; NormalizedEmail = value?.Normalize().ToLower(); }
+        }
+
         [Display(Name = "Adı")]
         public string FirstName { get; set; }
         [Display(Name = "İkinci Adı")]
@@ -34,8 +42,10 @@ namespace ViopOrtalama.Entities.Enitities
         public DateTime BirthDate { get; set; }
         public string Password { get; set; }
         [Display(Name = "Telefon Numarası")]
-        public override string PhoneNumber { get; set; }
-     
+        public  string PhoneNumber { get; set; }
+        [Display(Name = "Telefon Numarası")]
+        public int ConfirmCode { get; set; }
+
         [Display(Name = "Meslek")]
         public string Job { get; set; }
         public List<Contract>? Contracts { get; set; }

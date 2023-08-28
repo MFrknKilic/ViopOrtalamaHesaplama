@@ -18,7 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViopOrtalama.Repositories",
 		{85A1976D-921C-4921-8D22-78145632A728} = {85A1976D-921C-4921-8D22-78145632A728}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViopOrtalama.Dtos", "ViopOrtalama.Dtos\ViopOrtalama.Dtos.csproj", "{70BB9CD3-F8B0-4521-822D-75C4E27FE154}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViopOrtalama.Dtos", "ViopOrtalama.Dtos\ViopOrtalama.Dtos.csproj", "{70BB9CD3-F8B0-4521-822D-75C4E27FE154}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ViopOrtalama.Business.Abstract;
@@ -7,6 +8,8 @@ using ViopOrtalamaHesaplama.UI.Models.Contracts;
 
 namespace ViopOrtalamaHesaplama.UI.Controllers
 {
+    [Authorize]
+
     public class ContractController : Controller
     {
 
@@ -39,7 +42,7 @@ namespace ViopOrtalamaHesaplama.UI.Controllers
             contract.Company = ccvm.Company;
             contract.Expiry = ccvm.Expiry;
             contract.Position = ccvm.SelectedPosition;
-
+            contract.AppUser.Id = currentUser.Id;
             _contractService.Add(contract);
 
             return View();
@@ -58,8 +61,19 @@ namespace ViopOrtalamaHesaplama.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateContractCommodity(CreateContractCommodityVM cccvm)
         {
-            var vam = cccvm;
-           
+            AppUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+            Contract contract = new Contract();
+
+            contract.AppUser = currentUser;
+            contract.Quantity = cccvm.Quantity;
+            contract.Price = cccvm.Price;
+            contract.Commodity = cccvm.Commodity;
+            contract.Expiry = cccvm.Expiry;
+            contract.Position = cccvm.SelectedPosition;
+            contract.AppUser.Id = currentUser.Id;
+            _contractService.Add(contract);
+
 
 
             return View();
@@ -77,8 +91,18 @@ namespace ViopOrtalamaHesaplama.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateContractCurrency(CreateContractCurrencyVM cccurencyvm)
         {
-            var vam = cccurencyvm;
-            
+            AppUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+            Contract contract = new Contract();
+
+            contract.AppUser = currentUser;
+            contract.Quantity = cccurencyvm.Quantity;
+            contract.Price = cccurencyvm.Price;
+            contract.Currency = cccurencyvm.Currency;
+            contract.Expiry = cccurencyvm.Expiry;
+            contract.Position = cccurencyvm.SelectedPosition;
+            contract.AppUser.Id = currentUser.Id;
+            _contractService.Add(contract);
 
 
             return View();
@@ -97,8 +121,19 @@ namespace ViopOrtalamaHesaplama.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateContractAvarage(CreateContractAveragesVM vm)
         {
-            var vam = vm;
-            
+            AppUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+            Contract contract = new Contract();
+
+            contract.AppUser = currentUser;
+            contract.Quantity = vm.Quantity;
+            contract.Price = vm.Price;
+            contract.Averages = vm.Averages;
+            contract.Expiry = vm.Expiry;
+            contract.Position = vm.SelectedPosition;
+            contract.AppUser.Id = currentUser.Id;
+            _contractService.Add(contract);
+
 
 
             return View();
