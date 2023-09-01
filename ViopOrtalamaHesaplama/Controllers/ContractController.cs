@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 using ViopOrtalama.Business.Abstract;
 using ViopOrtalama.Entities.Enitities;
+using ViopOrtalamaHesaplama.UI.FluentValidators.ContractValidations;
 using ViopOrtalamaHesaplama.UI.Models.Contracts;
+using ViopOrtalamaHesaplama.UI.Models.Users;
 
 namespace ViopOrtalamaHesaplama.UI.Controllers
 {
@@ -31,10 +33,24 @@ namespace ViopOrtalamaHesaplama.UI.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateContractCompany(ContractCompanyVM ccvm)
+        public async Task<IActionResult> CreateContractCompany(CreateContractCompanyVM ccvm)
         {
-            AppUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
 
+            var validator = new CreateCompanyVMValidator();
+            var validationResult = validator.Validate(ccvm);
+
+            if (!validationResult.IsValid)
+            {
+                // Validation failed, return with errors
+                foreach (var error in validationResult.Errors)
+                {
+                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                }
+
+                return View(ccvm);
+            }
+            
+            AppUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
             Contract contract = new Contract();
 
             contract.AppUser = currentUser;
@@ -46,9 +62,10 @@ namespace ViopOrtalamaHesaplama.UI.Controllers
             contract.Expiry = ccvm.Expiry;
             contract.Position = ccvm.SelectedPosition;
             contract.AppUser.Id = currentUser.Id;
-            _contractService.Add(contract);
-
+             _contractService.Add(contract);
             return RedirectToAction("ContractAverageOpenOnes", "ContractAverages");
+        
+          
 
         }
        

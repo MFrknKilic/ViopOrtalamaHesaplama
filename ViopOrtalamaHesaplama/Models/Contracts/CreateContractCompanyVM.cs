@@ -4,7 +4,7 @@ using ViopOrtalama.Entities.Enums;
 
 namespace ViopOrtalamaHesaplama.UI.Models.Contracts
 {
-    public class ContractCompanyVM
+    public class CreateContractCompanyVM
     {
         [Display(Name = "Adet")]
         public int Quantity { get; set; }

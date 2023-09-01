@@ -13,16 +13,20 @@ using ViopOrtalama.Repositories.Context;
 using System.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using FluentValidation.AspNetCore;
+using ViopOrtalamaHesaplama.UI.FluentValidators.FluentFilter;
+using ViopOrtalamaHesaplama.UI.FluentValidators.FluentValidationConfiguration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Hizmetlerin eklenmesi ve yapýlandýrýlmasý
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation().AddFormHelper();
 builder.Services.AddDistributedMemoryCache();
+builder.Services.ConfigureFluentValidation();
 
 builder.Services.AddDbContext<ViopDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Viop"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ViopDb1"));
 });
 builder.Services.AddIdentity<AppUser, AppRole>(options =>
 {
@@ -40,7 +44,7 @@ var app = builder.Build();
 
 var env = app.Environment; // IWebHostEnvironment
 
-if (env.IsDevelopment())
+if (env.IsProduction())
 {
     app.UseDeveloperExceptionPage();
     //app.UseMigrationsEndPoint();

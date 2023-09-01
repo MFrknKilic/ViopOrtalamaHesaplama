@@ -1,5 +1,4 @@
 ﻿using System;
-using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -7,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ViopOrtalama.Repositories.Migrations
 {
     /// <inheritdoc />
-    public partial class inti : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -43,12 +42,9 @@ namespace ViopOrtalama.Repositories.Migrations
                     Status = table.Column<int>(type: "int", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SecondName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SecondLastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ConfirmCode = table.Column<int>(type: "int", nullable: false),
                     Job = table.Column<string>(type: "nvarchar(max)", nullable: false),

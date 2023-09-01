@@ -30,8 +30,4 @@
     <ProjectReference Include="..\ViopOrtalama.Repositories\ViopOrtalama.Repositories.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="FluentValidation\ContractValidation\" />
-  </ItemGroup>
-
 </Project>

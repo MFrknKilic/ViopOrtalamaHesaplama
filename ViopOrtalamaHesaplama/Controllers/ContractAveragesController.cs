@@ -84,7 +84,7 @@ namespace ViopOrtalamaHesaplama.UI.Controllers
                    Position = group.First().Position,
                    Quantity = group.Sum(c => c.Quantity),
                    Price = group.Sum(c => c.Quantity * c.Price),
-                   ContactAverage = group.Average(c => c.Price),
+                   ContactAverage =group.Average(c => c.Price)
                   
                })
                .ToList();

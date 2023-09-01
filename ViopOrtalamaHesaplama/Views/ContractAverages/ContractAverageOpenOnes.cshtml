@@ -56,7 +56,10 @@
                         <td>@contract.Price.ToString("N2")</td>
                        
                         <td>
-                            <button class="btn btn-danger" onclick="deleteRow(@contract.ContractID)">Sil</button>
+                            <form method="post" asp-controller="Contract" asp-action="DeleteContract">
+                                <input type="hidden" name="contractID" value="@contract.ContractID" />
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Bu kontratı silmek istediğinizden emin misiniz?')">Sil</button>
+                            </form>
                         </td>
                     </tr>
                 }
@@ -65,21 +68,4 @@
     </div>
 </body>
 </html>
-<script>
-    function deleteRow(contractID) {
-        if (confirm("Bu kontratı silmek istediğinizden emin misiniz?")) {
-            // AJAX isteği yaparak DeleteAction action'ına contractID değerini gönderin
-            $.ajax({
-                url: '@Url.Action("DeleteContract", "Contract")',
-                type: 'POST',
-                data: { contractID: contractID },
-                success: function (result) {
-                    location.reload();
-                },
-                error: function (error) {
-                    // Hata durumunda yapılacak işlemler
-                }
-            });
-        }
-    }
-</script>
+

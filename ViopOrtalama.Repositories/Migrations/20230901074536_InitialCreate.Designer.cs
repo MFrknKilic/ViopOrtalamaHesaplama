@@ -12,8 +12,8 @@ using ViopOrtalama.Repositories.Context;
 namespace ViopOrtalama.Repositories.Migrations
 {
     [DbContext(typeof(ViopDbContext))]
-    [Migration("20230827192422_inti")]
-    partial class inti
+    [Migration("20230901074536_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -234,10 +234,6 @@ namespace ViopOrtalama.Repositories.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -247,14 +243,6 @@ namespace ViopOrtalama.Repositories.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("SecondLastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SecondName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
