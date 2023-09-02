@@ -64,33 +64,39 @@ namespace ViopOrtalamaHesaplama.UI.Controllers
         public async Task<IActionResult> ContractAveragesCompany()
         {
             AppUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+            // Kullanıcının işlemlerini al
             List<Contract> contracts = _contractService.GetDefault(x => x.AppUser.Id == currentUser.Id)
-                .GroupBy(x => new { x.Company, x.Expiry, x.Position })
-                .Where(g => g.Count() > 0)
-                .SelectMany(g => g)
                 .ToList();
 
-                      List<CompanyAvarages> contractAvarageVMs = contracts
-               .GroupBy(c => new
-               {
-                   CompanyValue = c.Company.Value,
-                   ExpiryValue = c.Expiry.Value,
-                   PositionValue = c.Position
-               })
-               .Select(group => new CompanyAvarages
-               {
-                   Company = group.First().Company.Value,
-                   Expiry = group.First().Expiry.Value,
-                   Position = group.First().Position,
-                   Quantity = group.Sum(c => c.Quantity),
-                   Price = group.Sum(c => c.Quantity * c.Price),
-                   ContactAverage =group.Average(c => c.Price)
-                  
-               })
-               .ToList();
+            // Şirket, vade ve pozisyon özelliklerine göre gruplandır
+            var groupedContracts = contracts.GroupBy(c => new
+            {
+                Company = c.Company.Value,
+                Expiry = c.Expiry.Value,
+                Position = c.Position
+            });
 
+            // Her grup için adet ve fiyat özelliklerini çarp ve ortalamayı hesapla
+            List<CompanyAvarages> contractAvarageVMs = new List<CompanyAvarages>();
+            foreach (var group in groupedContracts)
+            {
+                var totalQuantity = group.Sum(c => c.Quantity);
+                var totalPrice = group.Sum(c => c.Quantity * c.Price);
+                var companyAverages = new CompanyAvarages
+                {
+                    Company = group.Key.Company,
+                    Expiry = group.Key.Expiry,
+                    Position = group.Key.Position,
+                    Quantity = totalQuantity,
+                    Price = totalPrice,
+                    ContactAverage = totalQuantity > 0 ? totalPrice / totalQuantity : 0
+                };
 
-              return View(contractAvarageVMs);
+                contractAvarageVMs.Add(companyAverages);
+            }
+
+            return View(contractAvarageVMs);
         }
 
 

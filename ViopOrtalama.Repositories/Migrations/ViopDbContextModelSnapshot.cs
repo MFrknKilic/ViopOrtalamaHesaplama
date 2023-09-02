@@ -206,9 +206,6 @@ namespace ViopOrtalama.Repositories.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
-
                     b.Property<string>("Job")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

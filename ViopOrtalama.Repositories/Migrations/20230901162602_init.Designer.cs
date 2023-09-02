@@ -12,8 +12,8 @@ using ViopOrtalama.Repositories.Context;
 namespace ViopOrtalama.Repositories.Migrations
 {
     [DbContext(typeof(ViopDbContext))]
-    [Migration("20230901074536_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230901162602_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -208,9 +208,6 @@ namespace ViopOrtalama.Repositories.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
 
                     b.Property<string>("Job")
                         .IsRequired()

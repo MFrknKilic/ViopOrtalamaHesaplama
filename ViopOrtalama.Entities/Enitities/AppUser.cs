@@ -33,8 +33,6 @@ namespace ViopOrtalama.Entities.Enitities
         [Display(Name = "Soyadı")]
         public string LastName { get; set; }
         
-        [Display(Name = "Cinsiyet")]
-        public Gender Gender { get; set; }
         [Display(Name = "Doğum Tarihi")]
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }

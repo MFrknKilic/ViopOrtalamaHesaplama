@@ -26,7 +26,7 @@ builder.Services.ConfigureFluentValidation();
 
 builder.Services.AddDbContext<ViopDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ViopDb1"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ViopDb11"));
 });
 builder.Services.AddIdentity<AppUser, AppRole>(options =>
 {

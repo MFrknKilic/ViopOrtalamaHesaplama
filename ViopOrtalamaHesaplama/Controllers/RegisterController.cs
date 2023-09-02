@@ -43,7 +43,7 @@ namespace ViopOrtalamaHesaplama.UI.Controllers
                 PhoneNumber = userRegisterVM.PhoneNumber,
                 Job = userRegisterVM.Job,
                 BirthDate = userRegisterVM.BirthDate,
-                UserName = userRegisterVM.Email, // Kullanıcı adını e-posta olarak ayarla (opsiyonel)
+                UserName = Guid.NewGuid().ToString(),
                 ConfirmCode = code,
             };
 
